@@ -1,0 +1,16 @@
+React Nanodegree Program
+
+2. React Fundamentals
+  - Rendering UI with React
+  - State Management
+  - Lifecycle Events
+  - React Router
+  
+Projects
+main: contacts-app
+exercise: State Management
+  1. Passing Data
+  2. Functional Components
+  3. Managing State
+  4. Controlled Components
+  5. All Together
