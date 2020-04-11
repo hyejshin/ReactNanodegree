@@ -7,10 +7,12 @@ React Nanodegree Program
   - React Router
   
 Projects
-main: contacts-app
+main: contacts-app => (reactnd-contact-app, reactnd-contact-server)
 exercise: State Management
   1. Passing Data
   2. Functional Components
   3. Managing State
   4. Controlled Components
   5. All Together
+
+final project: book-tracking-app
