@@ -30,7 +30,7 @@ class SearchBook extends Component {
                                       book.authors.filter(author => author.includes(this.state.query)).length > 0)
                       .map(filteredBook =>
                     <li key={filteredBook.id}>
-                        <Book book={filteredBook} />
+                        <Book book={filteredBook} onAddBook={this.props.onAddBook}/>
                     </li>
                     )}
                 </ol>
