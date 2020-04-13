@@ -9,7 +9,7 @@ The purpose of this repository: exercises and projects for [React Nanodegree Pro
   - React Router
   
 ### Projects
-- contacts-app => (reactnd-contact-app, reactnd-contact-server)
+- contacts-app: reactnd-contact-app, reactnd-contact-server
 - exercise: State Management
   1. Passing Data
   2. Functional Components
