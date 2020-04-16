@@ -7,29 +7,47 @@ import BookList from './BookList'
 import SearchBook from './SearchBook'
 
 class BooksApp extends React.Component {
-  constructor(props) {
-    super(props)
-    this.readState = {'Currently Reading':'currentlyReading', 'Want to Read':'wantToRead', 'Read':'read'}
-    this.state = {
-      books: [] 
+  state = {
+    books: [] 
+  }
+
+  shelves = {
+    'Currently Reading':'currentlyReading',
+    'Want to Read':'wantToRead',
+    'Read':'read'
+  }
+
+  async componentDidMount() {
+    const books = await BooksAPI.getAll()
+    this.setState({books})
+
+  }
+
+  addBook = (book, shelf) => {
+    book.shelf = shelf
+    const ids = this.state.books.map(b => b.id)
+    if (ids.includes(book.id)) {
+      this.updateBook(book, shelf)
+    } else {
+      if (BooksAPI.update(book, shelf)) {
+        this.setState((curr)=> ({
+          books: [...curr.books, book]
+        }))
+      }
     }
   }
 
-  componentDidMount() {
-    BooksAPI.getAll().then((books) => {
-      this.setState(() => ({books}))
-    })
-  }
-
-  addBook = (id, status) => {
-    this.setState((curr)=> ({
-      books: curr.books.map((book) => {
-        if (book.id === id) {
-          book.shelf = status
-        }
-        return book
-      })
-    }))
+  updateBook = (book, shelf) => {
+    if (BooksAPI.update(book, shelf)) {
+      this.setState((curr)=> ({
+        books: curr.books.map((b) => {
+          if (b.id === book.id) {
+            b.shelf = shelf
+          }
+          return b
+        }) 
+      }))
+    }
   }
   
   render() {
@@ -37,12 +55,12 @@ class BooksApp extends React.Component {
       <div className="app">
         <Route path='/search' render={({history}) => (
           <SearchBook books={this.state.books} 
-            onAddBook={(id, status) => {
-            this.addBook(id, status)
+            onAddBook={(book, shelf) => {
+            this.addBook(book, shelf)
             history.push('/') }}/>
         )}/>
         <Route exact path='/' render={() => (
-          <BookList readState={this.readState} books={this.state.books} onAddBook={this.addBook}/>
+          <BookList shelves={this.shelves} books={this.state.books} onUpdateBook={this.updateBook} />
         )}/>
           
       </div>
