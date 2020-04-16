@@ -1,57 +1,71 @@
-import React, { Component } from 'react'
-import ListContacts from './ListContacts'
-import * as ContactsAPI from './utils/ContactsAPI'
-import CreateContact from './CreateContact'
+import React from 'react'
 import { Route } from 'react-router-dom'
+import * as BooksAPI from './BooksAPI'
+import './App.css'
+import './SearchBook'
+import BookList from './BookList'
+import SearchBook from './SearchBook'
 
-class App extends Component {
+class BooksApp extends React.Component {
   state = {
-    contacts: []
+    books: [] 
   }
 
-  componentDidMount() {
-    ContactsAPI.getAll().then((contacts) => {
-      this.setState(() => ({contacts}))
-    })
+  shelves = {
+    'Currently Reading':'currentlyReading',
+    'Want to Read':'wantToRead',
+    'Read':'read'
   }
 
-  removeContact = (contact) => {
-    this.setState((currentState) => ({
-      contacts: currentState.contacts.filter((c) => {
-        return c.id !== contact.id
-      })
-    }))
-    ContactsAPI.remove(contact);
+  async componentDidMount() {
+    const books = await BooksAPI.getAll()
+    this.setState({books})
+
   }
 
-  createContact = (contact) => {
-    ContactsAPI.create(contact)
-      .then((contact) => {
-        this.setState((currentState) => ({
-          contacts: currentState.contacts.concat([contact])
+  addBook = (book, shelf) => {
+    book.shelf = shelf
+    const ids = this.state.books.map(b => b.id)
+    if (ids.includes(book.id)) {
+      this.updateBook(book, shelf)
+    } else {
+      if (BooksAPI.update(book, shelf)) {
+        this.setState((curr)=> ({
+          books: [...curr.books, book]
         }))
-      })
+      }
+    }
   }
 
+  updateBook = (book, shelf) => {
+    if (BooksAPI.update(book, shelf)) {
+      this.setState((curr)=> ({
+        books: curr.books.map((b) => {
+          if (b.id === book.id) {
+            b.shelf = shelf
+          }
+          return b
+        }) 
+      }))
+    }
+  }
+  
   render() {
     return (
-      <div>
+      <div className="app">
+        <Route path='/search' render={({history}) => (
+          <SearchBook books={this.state.books} 
+            onAddBook={(book, shelf) => {
+            this.addBook(book, shelf)
+            history.push('/') }}/>
+        )}/>
         <Route exact path='/' render={() => (
-          <ListContacts
-            contacts={this.state.contacts}
-            onDeleteContact={this.removeContact}/>  
-        )} />
-        <Route path='/create' render={( {history} ) => (
-          <CreateContact
-            onCreateContact={(contact) => {
-              this.createContact(contact)
-              history.push('/')
-            }}/>  
-        )} />
+          <BookList shelves={this.shelves} books={this.state.books} onUpdateBook={this.updateBook} />
+        )}/>
+          
       </div>
-    );
+    )
   }
 }
 
-
-export default App;
+export default BooksApp
