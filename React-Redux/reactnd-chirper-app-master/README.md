@@ -10,7 +10,7 @@ To help you solidify your understanding of React and Redux, we will do a project
 
 ## A Guide for the Planning Stages of Your Project
 
-** 1. Identify What Each View Should Look Like ([mockup tools](https://codingsans.com/blog/mockup-tools)) **
+### 1. Identify What Each View Should Look Like ([mockup tools](https://codingsans.com/blog/mockup-tools))
     - View for the Dashboard Page
         - is located at the home route (`/`)
         - shows tweets sorted from most recently added at the top, to oldest at the bottom
@@ -23,7 +23,7 @@ To help you solidify your understanding of React and Redux, we will do a project
     - New Tweet
         - is located at `/new`
         - has a textbox for adding a new tweet
-** 2. Break Each View Into a Hierarchy of Components **
+### 2. Break Each View Into a Hierarchy of Components
     - Components for the Dashboard View
         - App: the overall container for the project
         - Navigation: displays the navigation
@@ -39,7 +39,7 @@ To help you solidify your understanding of React and Redux, we will do a project
         - App: the overall container for the project
         - Navigation: displays the navigation
         - New Tweet: display the form to create a new tweet
-** 3. Determine What Events Happen in the App **
+### 3. Determine What Events Happen in the App
       (*italicize* the action and **bold** the data)
     - The Tweets List Component
         - *get* the **tweets**
@@ -53,9 +53,9 @@ To help you solidify your understanding of React and Redux, we will do a project
     - New Tweet Component
         - *get* the **authedUser** so the user can *create* a new **tweet**
         - *set* the **text of the new tweet**
-** 4. Determine What Data Lives in the Store **
+### 4. Determine What Data Lives in the Store
     - tweets, users, authedUser
-    ```{
+    ``{
         tweets: {
             tweetId: { tweetId, authorId, timestamp, text, likes, replies, replyingTo},
             tweetId: { tweetId, authorId, timestamp, text, likes, replies, replyingTo}
@@ -64,7 +64,7 @@ To help you solidify your understanding of React and Redux, we will do a project
             userId: {userId, userName, avatar, tweetsArray},
             userId: {userId, userName, avatar, tweetsArray}
         }
-    }```
+    }``
 
 ## License
 Reference of the code:  [React Nanodegree program](https://www.udacity.com/course/react-nanodegree--nd019).
