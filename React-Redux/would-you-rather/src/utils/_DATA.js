@@ -1,30 +1,42 @@
 let users = {
+    hyejshin: {
+        id: 'hyejshin',
+        name: 'HyeJung Shin',
+        avatarURL: 'https://cdn4.vectorstock.com/i/1000x1000/20/83/woman-smiling-profile-vector-21372083.jpg',
+        answers: {
+          "8xf0y6ziyjabvozdd253nd": 'optionOne',
+          "6ni6ok3ym7mf1p33lnez": 'optionTwo',
+          "am8ehyc8byjqgar0jgpub9": 'optionTwo',
+          "loxhs1bqm25b708cmbf3g": 'optionTwo'
+        },
+        questions: ['vthrdm985a262al8qx3do', 'am8ehyc8byjqgar0jgpub9']
+    },
     sarahedo: {
       id: 'sarahedo',
       name: 'Sarah Edo',
-      avatarURL: ,
+      avatarURL: 'https://www.w3schools.com/howto/img_avatar2.png',
       answers: {
         "8xf0y6ziyjabvozdd253nd": 'optionOne',
         "6ni6ok3ym7mf1p33lnez": 'optionTwo',
         "am8ehyc8byjqgar0jgpub9": 'optionTwo',
         "loxhs1bqm25b708cmbf3g": 'optionTwo'
       },
-      questions: ['8xf0y6ziyjabvozdd253nd', 'am8ehyc8byjqgar0jgpub9']
+      questions: ['8xf0y6ziyjabvozdd253nd']
     },
     tylermcginnis: {
       id: 'tylermcginnis',
       name: 'Tyler McGinnis',
-      avatarURL: ,
+      avatarURL: 'https://www.w3schools.com/howto/img_avatar.png',
       answers: {
         "vthrdm985a262al8qx3do": 'optionOne',
         "xj352vofupe1dqz9emx13r": 'optionTwo',
       },
-      questions: ['loxhs1bqm25b708cmbf3g', 'vthrdm985a262al8qx3do'],
+      questions: ['loxhs1bqm25b708cmbf3g'],
     },
     johndoe: {
       id: 'johndoe',
       name: 'John Doe',
-      avatarURL: ,
+      avatarURL: 'https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png',
       answers: {
         "xj352vofupe1dqz9emx13r": 'optionOne',
         "vthrdm985a262al8qx3do": 'optionTwo',
