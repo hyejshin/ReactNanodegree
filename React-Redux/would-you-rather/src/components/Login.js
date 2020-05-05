@@ -4,9 +4,11 @@ import logo from '../logo.svg';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { handleSetAuthedUser } from '../actions/authedUser'
+import {fakeAuth} from './App'
 
 class Login extends Component {
     state = {
+        redirectToReferrer: false,
         loginId: ''
     }
     selectChange = (e) => {
@@ -18,19 +20,34 @@ class Login extends Component {
     handleLogin = (e) => {
         e.preventDefault()
         const { loginId } = this.state
+        console.log(loginId)
         if (loginId === '') {
             return
         }
-        const { dispatch } = this.props
-        dispatch(handleSetAuthedUser(loginId))
-        return <Redirect to='/' />
+        console.log(loginId)
+        //const { dispatch } = this.props
+        //dispatch(handleSetAuthedUser(loginId))
+        fakeAuth.authenticate(() => {
+            this.setState(() => ({
+                redirectToReferrer: true
+            }))
+        })
     }
     render() {
         const { users } = this.props;
+        const { redirectToReferrer } = this.state;
+        const { from } = this.props.location.state || { from: {pathname: '/' }}
+
+        if (redirectToReferrer === true) {
+            return (
+                <Redirect to={from} />
+            )
+        }
+
         return (
         <Card className="Login">
             <Card.Header>
-                <h4>Welcome to the Would You Rather App!</h4>
+                <h4>Welcome to the Would You Rather App!{from.pathname}</h4>
                 <h5>Please sign in to continue</h5>
             </Card.Header>
             <Card.Body>
