@@ -3,12 +3,10 @@ import { Card, Form, Button } from 'react-bootstrap'
 import logo from '../logo.svg';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { handleSetAuthedUser } from '../actions/authedUser'
-import {fakeAuth} from './App'
+import { setAuthedUser } from '../actions/authedUser'
 
 class Login extends Component {
     state = {
-        redirectToReferrer: false,
         loginId: ''
     }
     selectChange = (e) => {
@@ -25,20 +23,15 @@ class Login extends Component {
             return
         }
         console.log(loginId)
-        //const { dispatch } = this.props
-        //dispatch(handleSetAuthedUser(loginId))
-        fakeAuth.authenticate(() => {
-            this.setState(() => ({
-                redirectToReferrer: true
-            }))
-        })
+        const { dispatch } = this.props
+        dispatch(setAuthedUser(loginId))
     }
+
     render() {
-        const { users } = this.props;
-        const { redirectToReferrer } = this.state;
+        const { authedUser, users } = this.props;
         const { from } = this.props.location.state || { from: {pathname: '/' }}
 
-        if (redirectToReferrer === true) {
+        if (authedUser) {
             return (
                 <Redirect to={from} />
             )
@@ -68,8 +61,9 @@ class Login extends Component {
     }
   }
 
-  function mapStateToProps ({ users }) {
+  function mapStateToProps ({ authedUser, users }) {
     return {
+        authedUser: authedUser,
         users: users
     }
   }

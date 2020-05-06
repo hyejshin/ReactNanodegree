@@ -9,21 +9,9 @@ import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import LoadingBar from 'react-redux-loading'
 
-export const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true
-    setTimeout(cb, 100) // fake async
-  },
-  signout(cb) {
-    this.isAuthenticated = false
-    setTimeout(cb, 100) // fake async
-  }
-}
-
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) =>(
-    fakeAuth.isAuthenticated === true
+    props.authedUser
     ? <Component {...props} />
     : <Redirect to={{
         pathname: '/login',
@@ -37,6 +25,7 @@ class App extends Component {
     this.props.dispatch(handleInitialData())
   }
   render () {
+    const { authedUser } = this.props
     return (
       <Router>
         <Fragment>
@@ -45,9 +34,9 @@ class App extends Component {
           <NavBar/>
             <div>
               <Route path='/login' exact component={Login} />
-              <PrivateRoute path='/' exact component={Dashboard} />
-              <PrivateRoute path='/newQuestion' exact component={NewQuestion} />
-              <PrivateRoute path='/leaderBoard' exact component={LeaderBoard} />
+              <PrivateRoute path='/' exact component={Dashboard} authedUser={authedUser} />
+              <PrivateRoute path='/newQuestion' exact component={NewQuestion} authedUser={authedUser}/>
+              <PrivateRoute path='/leaderBoard' exact component={LeaderBoard} authedUser={authedUser} />
             </div>
           </div>
         </Fragment>
@@ -56,8 +45,9 @@ class App extends Component {
   }
 }
 
-function mapStateToProps ({ users }) {
+function mapStateToProps ({ authedUser, users }) {
   return {
+    authedUser: authedUser,
     loading: users === null
   }
 }

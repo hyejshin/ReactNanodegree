@@ -1,6 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Navbar, Nav } from 'react-bootstrap'
-import { fakeAuth } from './App'
 
 function NavBar (props) {
   console.log(props)
@@ -14,7 +14,7 @@ function NavBar (props) {
         </Nav>
         <Navbar.Text>
             {
-              fakeAuth.isAuthenticated === false
+              props.authedUser
               ? 'Welcome! | logout'
               : 'login'
             }
@@ -23,12 +23,13 @@ function NavBar (props) {
     );
   }
 
-  function mapStateToProps ({ users }) {
+  function mapStateToProps ({ authedUser, users }) {
     return {
+        authedUser: authedUser,
         users: users
     }
   }
   
   
-  export default NavBar;
+  export default connect(mapStateToProps)(NavBar);
   
