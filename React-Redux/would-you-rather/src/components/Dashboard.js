@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 class Dashboard extends Component {
     render() {
@@ -7,7 +8,14 @@ class Dashboard extends Component {
             <div>Dashboard</div>
         )
     }
-  }
-  
-  export default connect()(Dashboard);
+}
+
+function mapStateToProps ({ authedUser }) {
+    return {
+        authedUser,
+    }
+}
+
+
+export default connect(mapStateToProps)(Dashboard);
   

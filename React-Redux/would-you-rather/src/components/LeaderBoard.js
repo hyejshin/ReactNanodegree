@@ -7,7 +7,14 @@ class LeaderBoard extends Component {
             <div>LeaderBoard</div>
         )
     }
-  }
+}
   
-  export default connect()(LeaderBoard);
+function mapStateToProps ({ authedUser }) {
+    return {
+        authedUser,
+    }
+}
+
+
+export default connect(mapStateToProps)(LeaderBoard);
   

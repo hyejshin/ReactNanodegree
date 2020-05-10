@@ -1,43 +1,34 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Login from './Login'
 import NewQuestion from './NewQuestion'
 import LeaderBoard from './LeaderBoard'
 import NavBar from './NavBar'
 import Dashboard from './Dashboard'
+import PageNotFound from './PageNotFound'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import LoadingBar from 'react-redux-loading'
-
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) =>(
-    props.authedUser
-    ? <Component {...props} />
-    : <Redirect to={{
-        pathname: '/login',
-        state: { from: props.location }
-      }}/>
-  )}/>
-)
 
 class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData())
   }
   render () {
-    const { authedUser } = this.props
+    const { authedUser, isLogined } = this.props
     return (
       <Router>
         <Fragment>
-          <LoadingBar/>
+          <LoadingBar />
           <div className="App">
           <NavBar/>
-            <div>
+            <Switch>
               <Route path='/login' exact component={Login} />
-              <PrivateRoute path='/' exact component={Dashboard} authedUser={authedUser} />
-              <PrivateRoute path='/newQuestion' exact component={NewQuestion} authedUser={authedUser}/>
-              <PrivateRoute path='/leaderBoard' exact component={LeaderBoard} authedUser={authedUser} />
-            </div>
+              <Route path='/' exact component={authedUser === null? Login : Dashboard}/>
+              <Route path='/newQuestion' exact component={authedUser === null? Login : NewQuestion} />
+              <Route path='/leaderBoard' exact component={authedUser === null? Login : LeaderBoard} />
+              <Route component={PageNotFound} />
+            </Switch>
           </div>
         </Fragment>
       </Router>
@@ -45,10 +36,14 @@ class App extends Component {
   }
 }
 
-function mapStateToProps ({ authedUser, users }) {
+function mapStateToProps ({ authedUser, users, questions, loadingBar }) {
   return {
-    authedUser: authedUser,
-    loading: users === null
+    authedUser,
+    users,
+    questions,
+    loadingBar,
+    loading: loadingBar.default === 1,
+    isLogined: authedUser !== null
   }
 }
 

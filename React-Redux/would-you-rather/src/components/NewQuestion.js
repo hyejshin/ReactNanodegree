@@ -7,7 +7,15 @@ class NewQuestion extends Component {
             <div>NewQuestion</div>
         )
     }
-  }
-  
-  export default connect()(NewQuestion);
+}
+
+function mapStateToProps ({ authedUser }) {
+    return {
+        authedUser: authedUser,
+    }
+}
+
+
+export default connect(mapStateToProps)(NewQuestion);
+
   
