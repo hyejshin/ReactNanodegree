@@ -17,8 +17,19 @@
     margin-top: 5px;
 }
 
+.pollButton {
+    margin-top: 25px;
+}
+
 .avatar {
-    height: 50px;
+    height: 130px;
     border-radius: 25px;
     margin: 10px;
+    float: left;
+}
+
+.questionCard {
+    width: 600px;
+    margin: auto;
+    margin-top: 20px;
 }

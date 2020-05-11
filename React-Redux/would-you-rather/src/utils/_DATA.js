@@ -2,7 +2,7 @@ let users = {
     hyejshin: {
         id: 'hyejshin',
         name: 'HyeJung Shin',
-        avatarURL: 'https://cdn4.vectorstock.com/i/1000x1000/20/83/woman-smiling-profile-vector-21372083.jpg',
+        avatarURL: 'https://i.ya-webdesign.com/images/funny-png-avatar-2.png',
         answers: {
           "8xf0y6ziyjabvozdd253nd": 'optionOne',
           "6ni6ok3ym7mf1p33lnez": 'optionTwo',
@@ -75,7 +75,7 @@ let users = {
     },
     "am8ehyc8byjqgar0jgpub9": {
       id: 'am8ehyc8byjqgar0jgpub9',
-      author: 'sarahedo',
+      author: 'hyejshin',
       timestamp: 1488579767190,
       optionOne: {
         votes: [],
@@ -101,7 +101,7 @@ let users = {
     },
     "vthrdm985a262al8qx3do": {
       id: 'vthrdm985a262al8qx3do',
-      author: 'tylermcginnis',
+      author: 'hyejshin',
       timestamp: 1489579767190,
       optionOne: {
         votes: ['tylermcginnis'],

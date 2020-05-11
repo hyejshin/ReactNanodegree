@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Login from './Login'
+import Question from './Question'
 import NewQuestion from './NewQuestion'
 import LeaderBoard from './LeaderBoard'
 import NavBar from './NavBar'
@@ -25,6 +26,7 @@ class App extends Component {
             <Switch>
               <Route path='/login' exact component={Login} />
               <Route path='/' exact component={authedUser === null? Login : Dashboard}/>
+              <Route path='/question/:id' exact component={authedUser === null? Login : Question} />
               <Route path='/newQuestion' exact component={authedUser === null? Login : NewQuestion} />
               <Route path='/leaderBoard' exact component={authedUser === null? Login : LeaderBoard} />
               <Route component={PageNotFound} />
@@ -37,8 +39,9 @@ class App extends Component {
 }
 
 function mapStateToProps ({ authedUser, users, questions, loadingBar }) {
+  console.log(users)
   return {
-    authedUser,
+    authedUser: 'hyejshin',
     users,
     questions,
     loadingBar,
