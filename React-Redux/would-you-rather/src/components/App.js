@@ -39,9 +39,8 @@ class App extends Component {
 }
 
 function mapStateToProps ({ authedUser, users, questions, loadingBar }) {
-  console.log(users)
   return {
-    authedUser: 'hyejshin',
+    authedUser,
     users,
     questions,
     loadingBar,
