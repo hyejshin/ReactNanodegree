@@ -4,12 +4,11 @@ let users = {
         name: 'HyeJung Shin',
         avatarURL: 'https://i.ya-webdesign.com/images/funny-png-avatar-2.png',
         answers: {
-          "8xf0y6ziyjabvozdd253nd": 'optionOne',
-          "6ni6ok3ym7mf1p33lnez": 'optionTwo',
-          "am8ehyc8byjqgar0jgpub9": 'optionTwo',
-          "loxhs1bqm25b708cmbf3g": 'optionTwo'
+          "6ni6ok3ym7mf1p33lnez": 'optionOne',
+          "loxhs1bqm25b708cmbf3g": 'optionTwo',
+          "vthrdm985a262al8qx3do": 'optionOne'
         },
-        questions: ['vthrdm985a262al8qx3do', 'am8ehyc8byjqgar0jgpub9']
+        questions: ['6ni6ok3ym7mf1p33lnez']
     },
     sarahedo: {
       id: 'sarahedo',
@@ -17,11 +16,10 @@ let users = {
       avatarURL: 'https://www.w3schools.com/howto/img_avatar2.png',
       answers: {
         "8xf0y6ziyjabvozdd253nd": 'optionOne',
-        "6ni6ok3ym7mf1p33lnez": 'optionTwo',
         "am8ehyc8byjqgar0jgpub9": 'optionTwo',
         "loxhs1bqm25b708cmbf3g": 'optionTwo'
       },
-      questions: ['8xf0y6ziyjabvozdd253nd']
+      questions: ['8xf0y6ziyjabvozdd253nd', 'am8ehyc8byjqgar0jgpub9']
     },
     tylermcginnis: {
       id: 'tylermcginnis',
@@ -31,7 +29,7 @@ let users = {
         "vthrdm985a262al8qx3do": 'optionOne',
         "xj352vofupe1dqz9emx13r": 'optionTwo',
       },
-      questions: ['loxhs1bqm25b708cmbf3g'],
+      questions: ['loxhs1bqm25b708cmbf3g', 'vthrdm985a262al8qx3do'],
     },
     johndoe: {
       id: 'johndoe',
@@ -42,7 +40,7 @@ let users = {
         "vthrdm985a262al8qx3do": 'optionTwo',
         "6ni6ok3ym7mf1p33lnez": 'optionTwo'
       },
-      questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
+      questions: ['xj352vofupe1dqz9emx13r'],
     }
   }
   
@@ -62,20 +60,20 @@ let users = {
     },
     "6ni6ok3ym7mf1p33lnez": {
       id: '6ni6ok3ym7mf1p33lnez',
-      author: 'johndoe',
+      author: 'hyejshin',
       timestamp: 1468479767190,
       optionOne: {
-        votes: [],
+        votes: ['hyejshin'],
         text: 'become a superhero',
       },
       optionTwo: {
-        votes: ['johndoe', 'sarahedo'],
+        votes: ['johndoe'],
         text: 'become a supervillain'
       }
     },
     "am8ehyc8byjqgar0jgpub9": {
       id: 'am8ehyc8byjqgar0jgpub9',
-      author: 'hyejshin',
+      author: 'sarahedo',
       timestamp: 1488579767190,
       optionOne: {
         votes: [],
@@ -95,16 +93,16 @@ let users = {
         text: 'be a front-end developer',
       },
       optionTwo: {
-        votes: ['sarahedo'],
+        votes: ['sarahedo', 'hyejshin'],
         text: 'be a back-end developer'
       }
     },
     "vthrdm985a262al8qx3do": {
       id: 'vthrdm985a262al8qx3do',
-      author: 'hyejshin',
+      author: 'tylermcginnis',
       timestamp: 1489579767190,
       optionOne: {
-        votes: ['tylermcginnis'],
+        votes: ['tylermcginnis', 'hyejshin'],
         text: 'find $50 yourself',
       },
       optionTwo: {

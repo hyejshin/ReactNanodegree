@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { Card, ListGroup, Button, ProgressBar } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import authedUser from '../reducers/authedUser'
+import { handleAddQuestionAnswer } from '../actions/shared'
 
 class Question extends Component {
     state = {
@@ -15,6 +14,8 @@ class Question extends Component {
         }))
     }
     submitHandler = () => {
+        const { dispatch } = this.props
+        dispatch(handleAddQuestionAnswer(this.props.id, this.state.selectedOption))
         this.setState(() => ({
             showQuestion: false
         }))
@@ -37,14 +38,14 @@ class Question extends Component {
                         <Card.Title>Would You Rather...</Card.Title>
                         <Card.Text>
                             <ListGroup>
-                                <ListGroup.Item key="option1"
-                                                variant={selectedOption === "option1"? "info" : ""}
-                                                onClick={() => this.handleOptionChange("option1")}>
+                                <ListGroup.Item key="optionOne"
+                                                variant={selectedOption === "optionOne"? "info" : ""}
+                                                onClick={() => this.handleOptionChange("optionOne")}>
                                     {optionOneText}
                                 </ListGroup.Item>
-                                <ListGroup.Item key="option2"
-                                                variant={selectedOption === "option2"? "info" : ""}
-                                                onClick={() => this.handleOptionChange("option2")}>
+                                <ListGroup.Item key="optionTwo"
+                                                variant={selectedOption === "optionTwo"? "info" : ""}
+                                                onClick={() => this.handleOptionChange("optionTwo")}>
                                     {optionTwoText}
                                 </ListGroup.Item>
                             </ListGroup>
@@ -65,14 +66,14 @@ class Question extends Component {
                         <Card.Title><h4>Results:</h4></Card.Title>
                         <Card.Text>
                             <ListGroup>
-                                <ListGroup.Item key="option1"
-                                                variant={yourVote === "option1"? "info" : ""}>
+                                <ListGroup.Item key="optionOne"
+                                                variant={yourVote === "optionOne"? "info" : ""}>
                                     {optionOneText}
                                     <ProgressBar now={optionOnePercentage} label={`${optionOnePercentage}%`} />
                                     {optionOneCount} out of {optionOneCount + optionTwoCount} votes
                                 </ListGroup.Item>
-                                <ListGroup.Item key="option2"
-                                                variant={yourVote === "option2"? "info" : ""}>
+                                <ListGroup.Item key="optionTwo"
+                                                variant={yourVote === "optionTwo"? "info" : ""}>
                                     {optionTwoText}
                                     <ProgressBar now={optionTwoPercentage} label={`${optionTwoPercentage}%`} />
                                     {optionTwoCount} out of {optionOneCount + optionTwoCount} votes
@@ -99,9 +100,9 @@ class Question extends Component {
     const optionTwoCount = question? question.optionTwo.votes.length : 0
     let yourVote = null
     if (question && question.optionOne.votes.includes(authedUser)) {
-        yourVote = "option1"
+        yourVote = "optionOne"
     } else if (question && question.optionTwo.votes.includes(authedUser)) {
-        yourVote = "option2"
+        yourVote = "optionTwo"
     }
     return {
         id,

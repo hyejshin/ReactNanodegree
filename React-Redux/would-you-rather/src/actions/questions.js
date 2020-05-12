@@ -2,6 +2,7 @@ import { saveQuestion } from '../utils/api'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ADD_QUESTION = 'ADD_QUESTION'
+export const ADD_QUESTION_ANSWER = 'ADD_QUESTION_ANSWER'
 
 export function receiveQuestions (questions) {
     return {
@@ -26,5 +27,14 @@ export function handleAddQuestion (optionOneText, optionTwoText) {
             author: authedUser,
         })
         .then((question) => dispatch(addQuestion(question)))
+    }
+}
+
+export function addQuestionAnswer (authedUser, qid, answer) {
+    return {
+        type: ADD_QUESTION_ANSWER,
+        authedUser,
+        qid,
+        answer,
     }
 }
