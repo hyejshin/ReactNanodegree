@@ -40,7 +40,7 @@ class Login extends Component {
         return (
         <Card className="Login">
             <Card.Header>
-                <h4>Welcome to the Would You Rather App!{from.pathname}</h4>
+                <h4>Welcome to the Would You Rather App!</h4>
                 <h5>Please sign in to continue</h5>
             </Card.Header>
             <Card.Body>

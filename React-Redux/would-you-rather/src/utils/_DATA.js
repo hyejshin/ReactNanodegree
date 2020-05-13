@@ -6,7 +6,8 @@ let users = {
         answers: {
           "6ni6ok3ym7mf1p33lnez": 'optionOne',
           "loxhs1bqm25b708cmbf3g": 'optionTwo',
-          "vthrdm985a262al8qx3do": 'optionOne'
+          "vthrdm985a262al8qx3do": 'optionOne',
+          "1f2d0dpad5408w0nbsc0hix": 'optionOne'
         },
         questions: ['6ni6ok3ym7mf1p33lnez']
     },
@@ -121,6 +122,19 @@ let users = {
       optionTwo: {
         votes: ['tylermcginnis'],
         text: 'write Swift'
+      }
+    },
+    "1f2d0dpad5408w0nbsc0hix": {
+      id: '1f2d0dpad5408w0nbsc0hix',
+      author: 'hyejshin',
+      timestamp: 1589356376223,
+      optionOne: {
+        votes: ['hyejshin'],
+        text: 'Lose weight by exercising everyday',
+      },
+      optionTwo: {
+        votes: [],
+        text: 'Lose weight by eating less'
       }
     },
   }

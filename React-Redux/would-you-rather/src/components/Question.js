@@ -14,8 +14,10 @@ class Question extends Component {
         }))
     }
     submitHandler = () => {
-        const { dispatch } = this.props
-        dispatch(handleAddQuestionAnswer(this.props.id, this.state.selectedOption))
+        const { id, dispatch } = this.props
+        const { selectedOption } = this.state
+        if (selectedOption == "") return;
+        dispatch(handleAddQuestionAnswer(id, selectedOption))
         this.setState(() => ({
             showQuestion: false
         }))

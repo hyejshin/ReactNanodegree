@@ -10,7 +10,7 @@ class QuestionPage extends Component {
 
         return (
             
-            <Card border="info" className="questionCard" id={id}>
+            <Card border="info" className="card" id={id}>
                 <Card.Header><b>{name}</b> asks</Card.Header>
                 
                 <Card.Body>
