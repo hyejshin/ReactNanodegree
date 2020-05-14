@@ -18,11 +18,9 @@ class Login extends Component {
     handleLogin = (e) => {
         e.preventDefault()
         const { loginId } = this.state
-        console.log(loginId)
         if (loginId === '') {
             return
         }
-        console.log(loginId)
         const { dispatch } = this.props
         dispatch(setAuthedUser(loginId))
     }

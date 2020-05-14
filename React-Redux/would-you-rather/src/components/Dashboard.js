@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import QuestionPage from './QuestionPage'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 import { Tabs, Tab } from 'react-bootstrap'
 
 class Dashboard extends Component {

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Card, ListGroup, Badge } from 'react-bootstrap'
 
 class UserBoard extends Component {
@@ -11,7 +10,7 @@ class UserBoard extends Component {
             <Card border="success">
             <Card.Header><h3>{user.name}</h3></Card.Header>
             <Card.Body>
-                <img className="avatar" src={user.avatarURL} />
+                <img className="avatar" src={user.avatarURL} alt="avatar"/>
                 <div className="userinfo">
                     <h5>Score <Badge variant="success">{questions + answers}</Badge></h5>
                     <Card.Text>

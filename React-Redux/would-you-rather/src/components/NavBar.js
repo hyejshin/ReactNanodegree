@@ -14,9 +14,9 @@ class NavBar extends Component {
       <Navbar bg="light" variant="light">
           <Navbar.Brand href="#home">Would You Rather</Navbar.Brand>
           <Nav className="mr-auto">
-            <Nav.Link><NavLink to="/">Home</NavLink></Nav.Link>
-            <Nav.Link><NavLink to="/newQuestion">New Question</NavLink></Nav.Link>
-            <Nav.Link><NavLink to="/leaderBoard">Leader Board</NavLink></Nav.Link>
+            <NavLink to="/" className="nav">Home</NavLink>
+            <NavLink to="/add" className="nav">New Question</NavLink>
+            <NavLink to="/leaderboard" className="nav">Leader Board</NavLink>
           </Nav>
           <Navbar.Text>
               {

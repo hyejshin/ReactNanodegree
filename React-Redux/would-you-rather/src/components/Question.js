@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Card, ListGroup, Button, ProgressBar } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { handleAddQuestionAnswer } from '../actions/shared'
+import PageNotFound from './PageNotFound'
 
 class Question extends Component {
     state = {
@@ -16,26 +17,32 @@ class Question extends Component {
     submitHandler = () => {
         const { id, dispatch } = this.props
         const { selectedOption } = this.state
-        if (selectedOption == "") return;
+        if (selectedOption === "") return;
         dispatch(handleAddQuestionAnswer(id, selectedOption))
         this.setState(() => ({
             showQuestion: false
         }))
     }
     render() {
-        const { id, name, avatarURL, optionOneText, optionTwoText, 
+        const { notValid, id, name, avatarURL, optionOneText, optionTwoText, 
                 optionOneCount, optionTwoCount, yourVote } = this.props;
         const { showQuestion, selectedOption } = this.state;
         const optionOnePercentage = Math.round(optionOneCount / (optionOneCount + optionTwoCount) * 100);
         const optionTwoPercentage = Math.round(optionTwoCount / (optionOneCount + optionTwoCount) * 100);
-        
+
+        if (notValid) {
+            return (
+                <PageNotFound />
+            )
+        }
+
         if(showQuestion) {
             return (
                 <Card border="info" className="questionCard" id={id}>
                     <Card.Header><b>{name}</b> asks</Card.Header>
                     
                     <Card.Body>
-                    <img className="avatar" src={avatarURL} />
+                    <img className="avatar" src={avatarURL} alt="avatar"/>
                     <div className="question">
                         <Card.Title>Would You Rather...</Card.Title>
                         <Card.Text>
@@ -63,7 +70,7 @@ class Question extends Component {
                     <Card.Header><h6>Asked by {name}</h6></Card.Header>
                     
                     <Card.Body>
-                    <img className="avatar" src={avatarURL} />
+                    <img className="avatar" src={avatarURL} alt="avatar"/>
                     <div className="question">
                         <Card.Title><h4>Results:</h4></Card.Title>
                         <Card.Text>
@@ -106,7 +113,9 @@ class Question extends Component {
     } else if (question && question.optionTwo.votes.includes(authedUser)) {
         yourVote = "optionTwo"
     }
+
     return {
+        notValid: question === undefined,
         id,
         name,
         avatarURL,
