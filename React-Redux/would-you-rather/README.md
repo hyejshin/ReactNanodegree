@@ -1,9 +1,17 @@
 # Would You Rather Project
 
-This is the final project for Udacity's React Fundamentals course.
+This is the final project for Udacity React Nanodegree React & Redux course.
 
 
-## TL;DR
+## Overview
+
+In the "Would You Rather?" Project, you'll build a web app that lets a user play the “Would You Rather?” game. The game goes like this: A user is asked a question in the form: “Would you rather [option A] or [option B] ?”. Answering "neither" or "both" is against the rules.
+
+In your app, users will be able to answer questions, see which questions they haven’t answered, see how other people have voted, post questions, and see the ranking of users on the leaderboard.
+
+![Image of project](./img/overview.PNG)
+
+## Instruction
 
 To get started developing right away:
 
@@ -11,16 +19,26 @@ To get started developing right away:
 * start the development server with `npm start`
 
 
+## Coding Stage🔨
+Step 1 - Design the shape of the state and create reducers.
 
-# Would You Rather Project
+Step 2 - Create a Redux store. Connect logger middleware (optional) and Redux Thunk middleware (alternatively, you can use Redux Saga, etc.).
 
-This is the starter code for the final assessment project for Udacity's React & Redux course.
+Step 3 - For each view that needs access to the store, create the component and connect it to the store.
+
+Step 4 - For the component you created in the last step, create actions and action creators. Check that everything works correctly.
+
+Step 5 - Repeat Step 3 & Step 4 for each component that needs access to the store.
+
+Step 6 - Create presentational components and confirm that everything works correctly.
+
+Step 7 - Add React Router.
+
+
+
+## Data file 
 
 The `_DATA.js` file represents a fake database and methods that let you access the data. The only thing you need to edit in the ` _DATA.js` file is the value of `avatarURL`. Each user should have an avatar, so you’ll need to add the path to each user’s avatar.
-
-Using the provided starter code, you'll build a React/Redux front end for the application. We recommend using the [Create React App](https://github.com/facebook/create-react-app) to bootstrap the project.
-
-## Data
 
 There are two types of objects stored in our database:
 
