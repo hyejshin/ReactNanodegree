@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { 
   View,
   Text,
+  ScrollView,
   StyleSheet,
   TouchableHighlight,
   TouchableNativeFeedback,
@@ -10,6 +11,9 @@ import {
   Slider
 } from 'react-native';
 import AddEntry from './components/AddEntry'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './reducers'
 
 export default class App extends Component {
   state = {
@@ -17,9 +21,11 @@ export default class App extends Component {
   }
   render() {
     return (
-      <View style={styles.container}>
-        <AddEntry/>
-      </View>
+      <Provider store={createStore(reducer)}>
+        <ScrollView>
+          <AddEntry/>
+        </ScrollView>
+      </Provider>
     );
   }
 }
