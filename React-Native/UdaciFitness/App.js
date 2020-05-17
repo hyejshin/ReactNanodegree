@@ -4,6 +4,7 @@ import {
   Text,
   ScrollView,
   StyleSheet,
+  Platform,
   TouchableHighlight,
   TouchableNativeFeedback,
   TouchableOpacity,
@@ -22,32 +23,10 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={createStore(reducer)}>
-        <ScrollView>
+        <ScrollView style={{flex: 1}}>
           <AddEntry/>
         </ScrollView>
       </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'stretch',
-    justifyContent: 'center',
-  },
-  btn: {
-    backgroundColor: '#E53224',
-    padding: 10,
-    paddingLeft: 50,
-    paddingRight: 50,
-    margin: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 5,
-  },
-  btnText: {
-    color: '#fff'
-  }
-});
