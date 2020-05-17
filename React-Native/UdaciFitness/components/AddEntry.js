@@ -6,6 +6,7 @@ import UdaciSteppers from './UdacitySteppers'
 import DateHeader from './DateHeader'
 import { Ionicons } from '@expo/vector-icons'
 import TextButton from './TextButton'
+import { submitEntry, removeEntry } from '../utils/api'
 
 function SubmitBtn ({ onPress }) {
     return (
@@ -67,7 +68,7 @@ export default class AddEntry extends Component {
 
         // Naviage to home
 
-        // Save to DB
+        submitEntry({ key, entry })
 
         // Clear local notificaiton
     }
@@ -78,7 +79,7 @@ export default class AddEntry extends Component {
 
         // Route to HOME
 
-        // Update DB
+        removeEntry(key)
     }
     render() {
         const metaInfo = getMetricMetaInfo()
