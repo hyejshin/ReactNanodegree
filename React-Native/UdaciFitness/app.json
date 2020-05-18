@@ -2,6 +2,8 @@
   "expo": {
     "name": "UdaciFitness",
     "slug": "UdaciFitness",
+    "privacy": "public",
+    "sdkVersion": "35.0.0",
     "platforms": [
       "ios",
       "android",
@@ -24,6 +26,5 @@
     "ios": {
       "supportsTablet": true
     }
-  },
-  "name": "UdaciFitness"
+  }
 }
