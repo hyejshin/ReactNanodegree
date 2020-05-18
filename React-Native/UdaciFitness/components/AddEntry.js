@@ -180,7 +180,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginRight: 30,
         marginLeft: 30,
-        marginTop: 200
     }
 })
 
