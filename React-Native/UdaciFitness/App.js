@@ -3,7 +3,7 @@ import {
   View,
   Text,
   Platform,
-  StatusBar
+  StatusBar,
 } from 'react-native';
 import AddEntry from './components/AddEntry'
 import { createStore } from 'redux'
@@ -18,6 +18,7 @@ import Constants from 'expo-constants'
 import { createStackNavigator } from 'react-navigation-stack'
 import EntryDetail from './components/EntryDetail'
 import Live from './components/Live'
+
 
 function UdaciStatusBar ({ backgroundColor, ...props }) {
   return (
