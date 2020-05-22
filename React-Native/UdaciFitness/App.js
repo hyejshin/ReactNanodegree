@@ -3,7 +3,7 @@ import {
   View,
   Text,
   Platform,
-  StatusBar,
+  StatusBar
 } from 'react-native';
 import AddEntry from './components/AddEntry'
 import { createStore } from 'redux'
