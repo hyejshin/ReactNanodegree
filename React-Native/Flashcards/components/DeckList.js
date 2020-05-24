@@ -1,20 +1,26 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { pastelYellow, blue, summerBlue, white } from '../utils/colors'
 
 class DeckList extends Component {
-
+    onDetail = () => {
+        console.log('detail')
+        this.props.navigation.navigate(
+            'EntryDetail',
+            //{ entryId: key }
+        )
+    }
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.deck}>
+                <TouchableOpacity style={styles.deck} onPress={this.onDetail}>
                     <Text style={styles.deckTitle}>Deck1</Text>
                     <Text style={styles.deckInfo}>3 cards</Text>
-                </View>
-                <View style={styles.deck}>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.deck}>
                     <Text style={styles.deckTitle}>Deck2</Text>
                     <Text style={styles.deckInfo}>6 cards</Text>
-                </View>
+                </TouchableOpacity>
             </View>
         )
     }

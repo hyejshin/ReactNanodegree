@@ -54,8 +54,32 @@ const TabNavigator = createBottomTabNavigator({
   }
 })
 
+const MainNavigator = createStackNavigator({
+  Home: {
+    screen: TabNavigator,
+  },
+  EntryDetail: {
+    screen: Deck,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: summerBlue
+      }
+    }
+  },
+  AddCard: {
+    screen: AddCard,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: summerBlue
+      }
+    }
+  }
+})
 
-const NavTabs = createAppContainer(TabNavigator)
+
+const NavTabs = createAppContainer(MainNavigator)
 
 export default class App extends Component {
   

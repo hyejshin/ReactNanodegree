@@ -2,9 +2,13 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { pastelYellow, red, summerBlue, white } from '../utils/colors'
 
-const Deck = () => {
+const Deck = (props) => {
     addCardHandler = () => {
         console.log('add')
+        props.navigation.navigate(
+            'AddCard',
+            //{ entryId: key }
+        )
     }
     startQuizHandler = () => {
         console.log('start')
@@ -63,7 +67,8 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: summerBlue,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        alignSelf: 'center'
     },
     startButton: {
         backgroundColor: summerBlue,
@@ -74,7 +79,8 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: pastelYellow,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        alignSelf: 'center'
     },
     addBtnText: {
         fontSize: 22,
