@@ -7,7 +7,6 @@ import { deleteDeck } from '../actions'
 
 const Deck = (props) => {
     addCardHandler = () => {
-        console.log('add')
         props.navigation.navigate(
             'AddCard',
             { deckId: props.deckId }

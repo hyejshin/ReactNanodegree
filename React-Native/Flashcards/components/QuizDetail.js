@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { pastelYellow, red, green, summerBlue, white, black } from '../utils/colors'
-import { addDeck } from '../actions'
-import { submitDeck } from '../utils/api'
-import { generateUID, getDeckData } from '../utils/helpers'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 class QuizDetail extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -53,7 +51,7 @@ class QuizDetail extends Component {
     render(){
         const { nextPage, index, score } = this.state
         const { cards, cardsKeys, count} = this.props
-        console.log('index', index)
+
         if (count === 0) {
             return (
                 <View style={{flex: 1, justifyContent: 'center', margin: 10}}>
@@ -62,6 +60,9 @@ class QuizDetail extends Component {
             )
         }
         if (count === index) {
+            {
+                clearLocalNotification().then(setLocalNotification())
+            }
             return (
                 <View style={{flex: 1, justifyContent: 'center', margin: 10}}>
                     <Text style={[styles.text, {marginTop: 150}]}>Score: {score} / {count}</Text>
