@@ -1,11 +1,22 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 import { pastelYellow, blue, summerBlue, white } from '../utils/colors'
+import { addDeck } from '../actions'
+import { submitDeck } from '../utils/api'
+import { generateUID, getDeckData } from '../utils/helpers'
 
-const AddDeck = () => {
+const AddDeck = (props) => {
     const [title, setTitle] = React.useState('');
     onSubmitHandler = () => {
-        console.log(title)
+        const key = generateUID()
+        const deck = getDeckData(title)
+        setTitle('')
+        props.dispatch(addDeck({
+            [key]: deck
+        }))
+        submitDeck({ key, deck })
+        props.navigation.goBack()
     }
     return (
         <View style={styles.container}>
@@ -63,4 +74,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default AddDeck
+export default connect()(AddDeck)

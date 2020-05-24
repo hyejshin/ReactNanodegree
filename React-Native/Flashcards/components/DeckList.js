@@ -1,26 +1,35 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux'
 import { pastelYellow, blue, summerBlue, white } from '../utils/colors'
+import { fetchFlashcardResults } from '../utils/api'
+import { receiveDecks } from '../actions'
 
 class DeckList extends Component {
-    onDetail = () => {
-        console.log('detail')
+    componentDidMount() {
+        const { dispatch } = this.props
+
+        fetchFlashcardResults()
+            .then((decks) => dispatch(receiveDecks(decks)))
+    }
+    onDetail = (key) => {
         this.props.navigation.navigate(
             'EntryDetail',
-            //{ entryId: key }
+            { deckId: key }
         )
     }
     render() {
+        const { decks } = this.props
         return (
             <View style={styles.container}>
-                <TouchableOpacity style={styles.deck} onPress={this.onDetail}>
-                    <Text style={styles.deckTitle}>Deck1</Text>
-                    <Text style={styles.deckInfo}>3 cards</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.deck}>
-                    <Text style={styles.deckTitle}>Deck2</Text>
-                    <Text style={styles.deckInfo}>6 cards</Text>
-                </TouchableOpacity>
+                {
+                    Object.keys(decks).map((key) => (
+                        <TouchableOpacity style={styles.deck} onPress={() => this.onDetail(key)} key={key}>
+                            <Text style={styles.deckTitle}>{decks[key].deckTitle}</Text>
+                            <Text style={styles.deckInfo}>{Object.keys(decks[key].cards).length} cards</Text>
+                        </TouchableOpacity>
+                    ))
+                }
             </View>
         )
     }
@@ -52,5 +61,10 @@ const styles = StyleSheet.create({
     }
 })
 
+function mapStateToProps (decks) {
+    return {
+        decks
+    }
+}
 
-export default DeckList
+export default connect(mapStateToProps)(DeckList)

@@ -1,14 +1,23 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 import { pastelYellow, blue, summerBlue, white } from '../utils/colors'
+import { addCard } from '../actions'
+import { submitDeck } from '../utils/api'
+import { getCardData } from '../utils/helpers'
 
-const AddCard = () => {
+const AddCard = (props) => {
     const [question, setQuestion] = React.useState('');
     const [answer, setAnswer] = React.useState('');
 
     onSubmitHandler = () => {
         console.log(question)
         console.log(answer)
+        const { dispatch, deckId, navigation } = props
+        const card = getCardData(question, answer)
+        const decks = dispatch(addCard(deckId, card))
+        submitDeck({ deckId, decks })
+        navigation.goBack()
     }
     return (
         <View style={styles.container}>
@@ -66,5 +75,12 @@ const styles = StyleSheet.create({
     }
 })
 
+function mapStateToProps (deck, { navigation }) {
+    const { deckId } = navigation.state.params
+    return {
+        deckId,
+        deck,
+    }
+}
 
-export default AddCard
+export default connect(mapStateToProps)(AddCard)

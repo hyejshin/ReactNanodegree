@@ -1,26 +1,32 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { pastelYellow, red, summerBlue, white } from '../utils/colors'
+import { connect } from 'react-redux'
+import { removeDeck } from '../utils/api'
+import { deleteDeck } from '../actions'
 
 const Deck = (props) => {
     addCardHandler = () => {
         console.log('add')
         props.navigation.navigate(
             'AddCard',
-            //{ entryId: key }
+            { deckId: props.deckId }
         )
     }
     startQuizHandler = () => {
         console.log('start')
     }
     deleteHandler = () => {
-        console.log('delete')
+        const { deckId, dispatch, navigation } = props
+        navigation.goBack()
+        dispatch(deleteDeck(deckId))
+        removeDeck(deckId)
     }
-    return (
+    return (   
         <View>
             <View style={styles.deck}>
-                <Text style={styles.deckTitle}>Deck Title</Text>
-                <Text style={styles.deckInfo}>3 cards</Text>
+                <Text style={styles.deckTitle}>{props.title}</Text>
+                <Text style={styles.deckInfo}>{props.count} cards</Text>
             </View>
 
             <TouchableOpacity
@@ -99,5 +105,17 @@ const styles = StyleSheet.create({
     },
 })
 
+function mapStateToProps (decks, { navigation }) {
+    const { deckId } = navigation.state.params
+    const deck = decks[deckId]
+    const title = deck? deck.deckTitle : null
+    const count = deck? Object.keys(deck.cards).length : 0
+    return {
+        deckId,
+        deck,
+        title,
+        count
+    }
+}
 
-export default Deck
+export default connect(mapStateToProps)(Deck)

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './reducers'
 import Constants from 'expo-constants'
 import { createAppContainer } from 'react-navigation'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
@@ -85,10 +88,12 @@ export default class App extends Component {
   
   render() {
     return (
-      <View style={styles.container}>
-        <AppStatusBar backgroundColor={summerBlue} barStyle='light-content' />
-        <NavTabs />
-      </View>
+      <Provider store={createStore(reducer)}>
+        <View style={styles.container}>
+          <AppStatusBar backgroundColor={summerBlue} barStyle='light-content' />
+          <NavTabs />
+        </View>
+      </Provider>
     );
   }
 }
