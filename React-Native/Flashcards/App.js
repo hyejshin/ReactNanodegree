@@ -63,7 +63,7 @@ export default class App extends Component {
     return (
       <View style={styles.container}>
         <AppStatusBar backgroundColor={summerBlue} barStyle='light-content' />
-        <AddDeck/>
+        <NavTabs />
       </View>
     );
   }
@@ -72,6 +72,5 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
   },
 });

@@ -6,7 +6,7 @@ class DeckList extends Component {
 
     render() {
         return (
-            <View>
+            <View style={styles.container}>
                 <View style={styles.deck}>
                     <Text style={styles.deckTitle}>Deck1</Text>
                     <Text style={styles.deckInfo}>3 cards</Text>
@@ -22,7 +22,8 @@ class DeckList extends Component {
 
 const styles = StyleSheet.create({
     container: {
-
+        alignItems: 'center',
+        marginTop: 50
     },
     deck: {
         backgroundColor: '#177CB0',
