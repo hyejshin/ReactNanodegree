@@ -8,8 +8,8 @@ function setDummyData () {
             deckTitle: 'React Native',
             cards: {
                 card1: {
-                    question: 'What is true about handling touches in React Native apps?',
-                    answer: 'What is true about handling touches in React Native apps?'
+                    question: 'How does the learn once, write anywhere approach influence development?',
+                    answer: 'Learning React allows us to use the same principles to develop for both web and native platforms'
                 },
                 card2: {
                     question: 'What is true about KeyboardAvoidingView?',

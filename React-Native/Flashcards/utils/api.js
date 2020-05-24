@@ -21,3 +21,12 @@ export function removeDeck (key) {
             AsyncStorage.setItem(FLASHCARD_STORAGE_KEY, JSON.stringify(data))
         })
 }
+
+export function submitCard ({ key, deck }) {
+    return AsyncStorage.getItem(FLASHCARD_STORAGE_KEY)
+        .then((results) => {
+            const data = JSON.parse(results)
+            data[key] = deck
+            AsyncStorage.setItem(FLASHCARD_STORAGE_KEY, JSON.stringify(data))
+        })
+}

@@ -14,7 +14,11 @@ const Deck = (props) => {
         )
     }
     startQuizHandler = () => {
-        console.log('start')
+        props.navigation.navigate(
+            'QuizDetail',
+            { deckId: props.deckId,
+              deckTitle: props.title }
+        )
     }
     deleteHandler = () => {
         const { deckId, dispatch, navigation } = props

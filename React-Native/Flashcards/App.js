@@ -13,6 +13,7 @@ import DeckList from './components/DeckList'
 import AddDeck from './components/AddDeck'
 import AddCard from './components/AddCard'
 import Deck from './components/Deck'
+import QuizDetail from './components/QuizDetail'
 
 function AppStatusBar ({ backgroundColor, ...props }) {
   return (
@@ -78,7 +79,16 @@ const MainNavigator = createStackNavigator({
         backgroundColor: summerBlue
       }
     }
-  }
+  },
+  QuizDetail: {
+    screen: QuizDetail,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: summerBlue
+      },
+    }
+  },
 })
 
 

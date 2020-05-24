@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 import { pastelYellow, blue, summerBlue, white } from '../utils/colors'
 import { addCard } from '../actions'
-import { submitDeck } from '../utils/api'
+import { submitCard } from '../utils/api'
 import { getCardData } from '../utils/helpers'
 
 const AddCard = (props) => {
@@ -11,12 +11,12 @@ const AddCard = (props) => {
     const [answer, setAnswer] = React.useState('');
 
     onSubmitHandler = () => {
-        console.log(question)
-        console.log(answer)
         const { dispatch, deckId, navigation } = props
         const card = getCardData(question, answer)
         const decks = dispatch(addCard(deckId, card))
-        submitDeck({ deckId, decks })
+        console.log(deckId)
+        console.log(JSON.stringify(props.deck))
+        submitCard({ deckId, decks })
         navigation.goBack()
     }
     return (
