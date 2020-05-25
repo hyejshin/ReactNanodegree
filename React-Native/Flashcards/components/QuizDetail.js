@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import { pastelYellow, red, green, summerBlue, white, black } from '../utils/colors'
+import { View, Text } from 'react-native'
+import { black } from '../utils/colors'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
+import Button from './Button'
+import styles from '../styles/QuizDetailStyle'
 
 class QuizDetail extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -22,10 +24,6 @@ class QuizDetail extends Component {
         }))
     }
     onSubmitHandler = (answer) => {
-        const { nextPage } = this.state
-        if(nextPage == 'Answer') {
-            return
-        }
         if(answer) {
             this.setState((curr) => ({
                 score: curr.score + 1,
@@ -44,9 +42,7 @@ class QuizDetail extends Component {
         }))
     }
     onBackHandler = () => {
-        this.props.navigation.navigate(
-            'Home'
-        )
+        this.props.navigation.goBack()
     }
     render(){
         const { nextPage, index, score } = this.state
@@ -67,16 +63,14 @@ class QuizDetail extends Component {
                 <View style={{flex: 1, justifyContent: 'center', margin: 10}}>
                     <Text style={[styles.text, {marginTop: 150}]}>Score: {score} / {count}</Text>
                     <View style={styles.btnContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.onStartHandler(true)}
-                            style={styles.startButton}>
-                                <Text style={styles.submitBtnText}>Start the Quiz</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => this.onBackHandler(false)}
-                            style={styles.deckButton}>
-                                <Text style={[styles.submitBtnText, {color: black}]}>Deck List</Text>
-                        </TouchableOpacity>
+                        <Button onPressHandler={this.onStartHandler}
+                                buttonStyle={styles.startButton}
+                                textStyle={styles.submitBtnText}
+                                text='Start the Quiz'/>
+                        <Button onPressHandler={this.onBackHandler}
+                                buttonStyle={styles.deckButton}
+                                textStyle={[styles.submitBtnText, {color: black}]}
+                                text='Back to deck'/>
                     </View>
                 </View>
             )
@@ -89,104 +83,19 @@ class QuizDetail extends Component {
                 </Text>
                 <View style={styles.btnContainer}>
                     <Text style={styles.answerBtnText} onPress={this.onBtnToggle}>{nextPage}</Text>
-                    <TouchableOpacity
-                        onPress={() => this.onSubmitHandler(true)}
-                        disabled={nextPage === 'Answer'}
-                        style={styles.correctBtn}>
-                            <Text style={styles.submitBtnText}>Correct</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={() => this.onSubmitHandler(false)}
-                        disabled={nextPage === 'Answer'}
-                        style={styles.incorrectBtn}>
-                            <Text style={styles.submitBtnText}>Incorrect</Text>
-                    </TouchableOpacity>
+                    <Button onPressHandler={() => this.onSubmitHandler(true)}
+                            buttonStyle={styles.correctBtn}
+                            textStyle={styles.submitBtnText}
+                            text='Correct'/>
+                    <Button onPressHandler={() => this.onSubmitHandler(false)}
+                            buttonStyle={styles.incorrectBtn}
+                            textStyle={styles.submitBtnText}
+                            text='Incorrect'/>
                 </View>
             </View>
         )
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        marginTop: 80
-    },
-    btnContainer: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        marginBottom: 150
-    },
-    text: {
-        fontSize: 32,
-        textAlign: 'center'
-    },
-    answerBtnText: {
-        fontSize: 22,
-        textAlign: 'center',
-        color: red,
-        marginBottom: 20,
-    },
-    correctBtn: {
-        backgroundColor: green,
-        padding: 10,
-        paddingLeft: 30,
-        paddingRight: 30,
-        height: 45,
-        width: 200,
-        borderRadius: 2,
-        borderWidth: 2,
-        borderColor: summerBlue,
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'center'
-    },
-    incorrectBtn: {
-        backgroundColor: red,
-        padding: 10,
-        paddingLeft: 30,
-        paddingRight: 30,
-        height: 45,
-        width: 200,
-        margin: 10,
-        borderRadius: 2,
-        borderWidth: 2,
-        borderColor: pastelYellow,
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'center'
-    },
-    submitBtnText: {
-        color: white,
-        fontSize: 22,
-        textAlign: 'center'
-    },
-    deckButton: {
-        backgroundColor: pastelYellow,
-        height: 50,
-        width: 200,
-        margin: 10,
-        borderRadius: 2,
-        borderWidth: 2,
-        borderColor: summerBlue,
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'center'
-    },
-    startButton: {
-        backgroundColor: summerBlue,
-        height: 50,
-        width: 200,
-        margin: 10,
-        borderRadius: 2,
-        borderWidth: 2,
-        borderColor: pastelYellow,
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'center'
-    },
-})
 
 function mapStateToProps (decks, { navigation }) {
     const { deckId } = navigation.state.params

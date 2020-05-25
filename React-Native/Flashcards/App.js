@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import { StyleSheet, View, StatusBar } from 'react-native';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
@@ -8,7 +8,7 @@ import { createAppContainer } from 'react-navigation'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { createStackNavigator } from 'react-navigation-stack'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
-import { pastelYellow, blue, summerBlue, white } from './utils/colors'
+import { summerBlue, white } from './utils/colors'
 import DeckList from './components/DeckList'
 import AddDeck from './components/AddDeck'
 import AddCard from './components/AddCard'

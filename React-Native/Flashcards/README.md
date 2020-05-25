@@ -15,6 +15,8 @@ To get started developing right away:
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
 
+* This project is tested in Android platform
+
 
 ## Planning Stage 📐
 Step 1 - Draw All of the Views of the App

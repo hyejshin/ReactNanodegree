@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, ScrollView, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
-import { pastelYellow, blue, summerBlue, white } from '../utils/colors'
 import { fetchFlashcardResults } from '../utils/api'
 import { receiveDecks } from '../actions'
+import styles from '../styles/DeckListStyle'
 
 class DeckList extends Component {
     componentDidMount() {
@@ -22,6 +22,7 @@ class DeckList extends Component {
         const { decks } = this.props
         return (
             <View style={styles.container}>
+                <ScrollView style={{width: '100%'}}>
                 {
                     Object.keys(decks).map((key) => (
                         <TouchableOpacity style={styles.deck} onPress={() => this.onDetail(key)} key={key}>
@@ -30,36 +31,11 @@ class DeckList extends Component {
                         </TouchableOpacity>
                     ))
                 }
+                </ScrollView>
             </View>
         )
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        alignItems: 'center',
-        marginTop: 50
-    },
-    deck: {
-        backgroundColor: '#177CB0',
-        borderColor: blue,
-        borderRadius: 2,
-        padding: 10,
-        margin: 10,
-        width: 300
-    },
-    deckTitle: {
-        fontSize: 36,
-        color: pastelYellow,
-        paddingTop: 10,
-        paddingBottom: 10
-    },
-    deckInfo: {
-        fontSize: 24,
-        color: white,
-        paddingBottom: 30
-    }
-})
 
 function mapStateToProps (decks) {
     return {

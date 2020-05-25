@@ -11,11 +11,11 @@ export function getDeckData (title) {
     })
 }
 
-export function getCardData (question, asnwer) {
+export function getCardData (question, answer) {
     return ({
         id: generateUID(),
         question: question,
-        asnwer: asnwer
+        answer: answer
     })
 }
 
@@ -25,7 +25,7 @@ export function generateUID () {
 
 export function clearLocalNotification () {
     return AsyncStorage.removeItem(NOTIFICATION_KEY)
-      .then(Notifications.cancelScheduledNotificationAsync())
+      .then(Notifications.cancelAllScheduledNotificationsAsync())
   }
 
   function createNotification() {
@@ -48,7 +48,7 @@ export function clearLocalNotification () {
     AsyncStorage.getItem(NOTIFICATION_KEY)
       .then(JSON.parse)
       .then((data) => {
-        if (data === null) {
+        if (data !== null) {
           Permissions.askAsync(Permissions.NOTIFICATIONS)
             .then(({ status }) => {
               if (status === 'granted') {

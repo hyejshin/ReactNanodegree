@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
-import { pastelYellow, blue, summerBlue, white } from '../utils/colors'
+import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 import { addDeck } from '../actions'
 import { submitDeck } from '../utils/api'
 import { generateUID, getDeckData } from '../utils/helpers'
+import styles from '../styles/AddDeckStyle'
 
 const AddDeck = (props) => {
     const [title, setTitle] = React.useState('');
@@ -17,6 +17,10 @@ const AddDeck = (props) => {
         }))
         submitDeck({ key, deck })
         props.navigation.goBack()
+        props.navigation.navigate(
+            'EntryDetail',
+            { deckId: key }
+        )
     }
     return (
         <View style={styles.container}>
@@ -27,51 +31,13 @@ const AddDeck = (props) => {
                 onChangeText={text => setTitle(text)} />
             <TouchableOpacity
                 onPress={onSubmitHandler}
+                disabled={title === ''}
                 style={styles.submitBtn}>
                     <Text style={styles.submitBtnText}>Submit</Text>
             </TouchableOpacity>
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 20
-    },
-    text: {
-        fontSize: 32,
-        textAlign: 'center'
-    },
-    textField: {
-        marginTop: 50,
-        marginBottom: 100,
-        borderColor: summerBlue,
-        borderWidth: 1,
-        borderRadius: 2,
-        padding: 4,
-        width: 300,
-        fontSize: 24
-    },
-    submitBtn: {
-        backgroundColor: summerBlue,
-        padding: 10,
-        paddingLeft: 30,
-        paddingRight: 30,
-        height: 45,
-        width: 200,
-        borderRadius: 2,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    submitBtnText: {
-        color: white,
-        fontSize: 22,
-        textAlign: 'center'
-    }
-})
 
 
 export default connect()(AddDeck)
