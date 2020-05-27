@@ -1,5 +1,6 @@
 # React Nanodegree Program
 The purpose of this repository: exercises and projects for [React Nanodegree Program](https://www.udacity.com/course/react-nanodegree--nd019)
+React Nanodegree Certificate: https://confirm.udacity.com/G2L64QMU
 
 ## React Fundamentals
 ### Concepts Learned
@@ -16,7 +17,7 @@ The purpose of this repository: exercises and projects for [React Nanodegree Pro
   3. Managing State
   4. Controlled Components
   5. All Together
-- final project: book-tracking-app
+- Final project: book-tracking-app*
 
 ## React & Redux
 ### Concepts Learned
@@ -33,3 +34,16 @@ The purpose of this repository: exercises and projects for [React Nanodegree Pro
   - reactnd-chirper-app-master: creating tweeter
   - [more redux examples](https://github.com/reduxjs/redux/tree/master/examples)
   - [React/Redux learning material](https://github.com/markerikson/react-redux-links)
+  - Fainal project: would-you-rather*
+
+## React Native
+### Concepts Learned
+  1. Up and Running with React Native
+  2. React vs React Native
+  3. Styling & Layout
+  4. Navigation
+  5. Native Features
+
+### Projects
+  - UdaciFitness: making todo and goal list
+  - Final project: Flashcards*
