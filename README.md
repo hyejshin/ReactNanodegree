@@ -1,6 +1,6 @@
 # React Nanodegree Program
-The purpose of this repository: exercises and projects for [React Nanodegree Program](https://www.udacity.com/course/react-nanodegree--nd019)
-React Nanodegree Certificate: https://confirm.udacity.com/G2L64QMU
+- The purpose of this repository: exercises and projects for [React Nanodegree Program](https://www.udacity.com/course/react-nanodegree--nd019)
+- React Nanodegree Certificate: https://confirm.udacity.com/G2L64QMU
 
 ## React Fundamentals
 ### Concepts Learned
